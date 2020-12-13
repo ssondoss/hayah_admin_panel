@@ -1,0 +1,174 @@
+<app-navbar></app-navbar>
+<h3 class="text-center py-4 bg-light mt-0">إضافة حساب لبنك دم</h3>
+
+<div class="mx-4 mt-5">
+  <div class="justify-content-center mb-5">
+    <form
+      action=""
+      dir="rtl"
+      class="row mt-3 mb-5"
+      [formGroup]="phoneAddressForm"
+    >
+      <div class="form-group col-md-4 text-right">
+        <label for=""> اسم المستشفى (مع ذكر الفرع إن تواجد) </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="contactName"
+          required
+          maxlength="250"
+        />
+        <mat-error
+          *ngIf="
+            phoneAddressForm.controls.contactName.errors?.required &&
+            phoneAddressForm.controls.contactName.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+      </div>
+      <div class="form-group col-md-2 text-right">
+        <label for=""> المحافظة التي تتواجد بها المستشفى </label>
+        <select name="" id="" class="custom-select">
+          <option value="">عمان</option>
+          <option value="closed">إربد</option>
+          <option value="">الكرك</option>
+          <option value="closed">معان</option>
+          <option value="">الطفيلة</option>
+          <option value="closed">العقبة</option>
+          <option value="">الزرقاء</option>
+          <option value="closed">جرش</option>
+          <option value="">عجلون</option>
+          <option value="closed">السلط</option>
+          <option value="">مادبا</option>
+          <option value="closed">البلقاء</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3 text-right">
+        <label for="">عنوان المستشفى التفصيلي</label>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <div class="form-group col-md-2 text-right">
+        <label for=""> رقم الهاتف للبنك ( 1 ) </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="phoneNumber1"
+          required
+          maxlength="10"
+          minlength="6"
+        />
+        <mat-error
+          *ngIf="
+            phoneAddressForm.controls.phoneNumber.errors?.required &&
+            phoneAddressForm.controls.phoneNumber.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+        <mat-error
+          *ngIf="phoneAddressForm.controls.phoneNumber.hasError('minlength')"
+        >
+          يجب أن يحتوي على 6 عناصر أو أكثر
+        </mat-error>
+      </div>
+      <div class="form-group col-md-2 text-right">
+        <label for=""> رقم الهاتف للبنك ( 2 ) </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="phoneNumber2"
+          required
+          maxlength="10"
+          minlength="6"
+        />
+        <mat-error
+          *ngIf="
+            phoneAddressForm.controls.phoneNumber.errors?.required &&
+            phoneAddressForm.controls.phoneNumber.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+        <mat-error
+          *ngIf="phoneAddressForm.controls.phoneNumber.hasError('minlength')"
+        >
+          يجب أن يحتوي على 6 عناصر أو أكثر
+        </mat-error>
+      </div>
+      <div class="form-group col-md-2 text-right">
+        <label for=""> رقم الهاتف للبنك ( 3 ) </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="phoneNumber3"
+          required
+          maxlength="10"
+          minlength="6"
+        />
+      </div>
+
+      <div class="form-group col-md-2 text-right">
+        <label for=""> اسم المستخدم لحساب بنك الدم </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="username"
+          required
+          maxlength="10"
+          minlength="6"
+        />
+      </div>
+      <div class="form-group col-md-2 text-right">
+        <label for=""> كلمة السر لحساب بنك الدم </label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="username"
+          required
+          maxlength="10"
+          minlength="6"
+        />
+      </div>
+      <div class="form-group col-md-2 text-center">
+        <button class="btn btn-primary mt-30px w-75 py-2">إضافة</button>
+      </div>
+    </form>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered" dir="rtl">
+      <thead class="text-center bg-light">
+        <th>#</th>
+        <th>اسم المستشفى</th>
+        <th>المحافظة</th>
+        <th>عنوان المستشفى التفصيلي</th>
+        <th>رقم الهاتف(1)</th>
+        <th>رقم الهاتف(2)</th>
+        <th>رقم الهاتف(3)</th>
+        <th>اسم المستخدم</th>
+        <th>كلمة السر</th>
+        <th>تعديل</th>
+        <th>حذف</th>
+      </thead>
+      <tbody class="text-center">
+        <td>1</td>
+        <td>الاردن</td>
+        <td>عمان</td>
+        <td>عمان</td>
+        <td>333055555</td>
+        <td>099999999</td>
+        <td>099999999</td>
+        <td>fdtghujk</td>
+        <td>ffffffff</td>
+        <td>
+          <i
+            class="fa fa-pencil-square-o t-25 text-success"
+            aria-hidden="true"
+            routerLink="/edit-blood-bank"
+          ></i>
+        </td>
+        <td><i class="fa fa-trash t-25 text-danger"></i></td>
+      </tbody>
+    </table>
+  </div>
+</div>

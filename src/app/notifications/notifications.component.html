@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+<h3 class="text-center py-4 bg-light mt-0">
+  إشعارات بنوك الدم المرسلة للمستخدمين لطلب وحدات الدم
+</h3>
+
+<div class="mx-2 mt-2">
+  <div class="row mx-0 my-5 justify-content-center" dir="rtl">
+    <div class="form-group col-md-2 text-right">
+      <label for=""> المحافظة</label>
+      <select name="" id="" class="custom-select">
+        <option value="">عمان</option>
+        <option value="closed">إربد</option>
+        <option value="">الكرك</option>
+        <option value="closed">معان</option>
+        <option value="">الطفيلة</option>
+        <option value="closed">العقبة</option>
+        <option value="">الزرقاء</option>
+        <option value="closed">جرش</option>
+        <option value="">عجلون</option>
+        <option value="closed">السلط</option>
+        <option value="">مادبا</option>
+        <option value="closed">البلقاء</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-2 text-right">
+      <label for=""> التاريخ</label>
+      <select name="" id="" class="custom-select">
+        <option value="">من الأحدث للأقدم</option>
+        <option value="">من الأقدم للأحدث</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-2 text-right">
+      <label for=""> اسم المستشفى</label>
+      <select name="" id="" class="custom-select">
+        <option value="">الاستشاري</option>
+        <option value="closed">الأردن</option>
+      </select>
+    </div>
+    <div class="col-md-2 text-center form-group">
+      <button class="btn btn-primary text-white py-2 mt-30px">
+        فلترة الحقول
+      </button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered" dir="rtl">
+      <thead class="bg-light text-center">
+        <th>#</th>
+        <th>التاريخ</th>
+        <th>اسم المستشفى</th>
+
+        <th>زمرة الدم التي يحتاجها بنك الدم</th>
+        <th>مكون الدم الذي يحتاجه بنك الدم</th>
+        <th>عدد وحدات الدم التي يحتاجها بنك الدم</th>
+
+        <th>ملاحظات إضافية تخص الإشعار</th>
+
+        <th>التفاصيل</th>
+      </thead>
+      <tbody class="text-center">
+        <td>0000</td>
+        <td>20/2/2020</td>
+        <td>المستشفى الاستشاري</td>
+        <td>اربد</td>
+
+        <td>بلدية</td>
+        <td>اربد</td>
+
+        <td>اربد</td>
+
+        <td>
+          <a routerLink="/notification-details">
+            <i class="text-success fa fa-eye fa-2x"></i
+          ></a>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>
