@@ -19,21 +19,25 @@
         <th>التفاصيل</th>
       </thead>
       <tbody class="text-center">
-        <td>1</td>
-        <td>الاردن</td>
-        <td>عمان</td>
-        <td>عمان</td>
-        <td>333055555</td>
-        <td>099999999</td>
-        <td>099999999</td>
-        <td>fdtghujk</td>
-        <td>
-          <i
-            class="fa fa-eye t-25 text-success"
-            aria-hidden="true"
-            routerLink="/approved-request-help-details"
-          ></i>
-        </td>
+        <tr *ngFor="let request of requests | async">
+          <td>{{ request.id }}</td>
+          <td>{{ request.nameValue }}</td>
+          <td>{{ request.dateValue }}</td>
+          <td>{{ request.nationalIdValue }}</td>
+          <td>{{ request.hospitalValue }}</td>
+          <td>{{ request.bloodTypeValue }}</td>
+          <td>{{ request.unitsValue }}</td>
+          <td>{{ request.bloodComponentType }}</td>
+          <td>
+            <a
+              [routerLink]="['/approved-request-help-details']"
+              [queryParams]="{ id: request.id }"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-eye t-25 text-success" aria-hidden="true"></i
+            ></a>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

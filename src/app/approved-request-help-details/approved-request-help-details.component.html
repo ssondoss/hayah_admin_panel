@@ -5,7 +5,7 @@
       <thead>
         <th colspan="2" class="alert-success">
           <h4 class="text-black text-center pt-1">
-            تفاصيل الاستدعاء لوحدات الدم - رقم (666)
+            تفاصيل الاستدعاء لوحدات الدم - رقم ({{ (item | async)?.id }})
           </h4>
         </th>
       </thead>
@@ -13,107 +13,105 @@
         <tr>
           <td class="w-25 f-19">رقم الاستدعاء</td>
 
-          <td>1</td>
+          <td>{{ (item | async)?.id }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">تاريخ إرسال الاستدعاء</td>
 
-          <td>17/10/1997</td>
+          <td>{{ (item | async)?.date }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">اسم المريض الرباعي</td>
 
-          <td>17/10/1997</td>
+          <td>{{ (item | async)?.nameValue }}</td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">الرقم الوطني للمريض</td>
 
-          <td>أنثى</td>
+          <td>{{ (item | async)?.nationalIdValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">عمر المريض</td>
 
-          <td>عمان/خلدا</td>
+          <td>{{ (item | async)?.dateValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">جنس المريض</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.genderValue }}</td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">اسم المستشفى التي يتواجد بها المريض</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.hospitalValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">المحافظة التي تتواجد بها المستشفى</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.cityValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">رقم هاتف بنك الدم للمستشفى</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.altPhoneValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">رقم السرير</td>
 
-          <td>6</td>
+          <td>{{ (item | async)?.bedValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">رقم الطابق</td>
 
-          <td>7</td>
+          <td>{{ (item | async)?.floorValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">زمرة الدم التي يحتاجها المريض</td>
 
-          <td>O+</td>
+          <td>{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">مكون الدم الذي يحتاجه المريض</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.bloodComponentType }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">عدد وحدات الدم التي يحتاجها المريض</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.unitsValue }}</td>
         </tr>
 
         <tr>
-          <td class="w-25 f-19">رقم هاتف المريض (1)</td>
+          <td class="w-25 f-19">رقم هاتف المريض</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.phoneValue }}</td>
         </tr>
-        <tr>
-          <td class="w-25 f-19">رقم هاتف المريض (2)</td>
 
-          <td>0798022719</td>
-        </tr>
         <tr>
           <td class="w-25 f-19">سبب الحاجة لوحدات الدم</td>
 
-          <td></td>
+          <td>{{ (item | async)?.reasonValue }}</td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">صورة تثبت أمر الطبيب</td>
 
-          <td></td>
+          <td>
+            <img
+              src="{{ getImageURL((item | async)?.imagePath) }}"
+              alt=""
+              width="400px"
+              height="auto"
+            />
+          </td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">ملاحظات إضافية من المريض</td>
 
-          <td></td>
-        </tr>
-        <tr>
-          <td>حالة الاستدعاء</td>
-
-          <td>تمت الموافقة عليه</td>
+          <td>{{ (item | async)?.notesValue }}</td>
         </tr>
         <tr>
           <td>اسم المسؤول الذي قام بالموافقة عليه</td>

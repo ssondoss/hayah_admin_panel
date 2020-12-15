@@ -19,6 +19,13 @@ import { ApprovedRequestHelpDetailsComponent } from './approved-request-help-det
 import { RejectedRequestHelpDetailsComponent } from './rejected-request-help-details/rejected-request-help-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopoverModule } from 'ngx-smart-popover';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { from } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -41,11 +48,16 @@ import { PopoverModule } from 'ngx-smart-popover';
     BrowserModule,
     PopoverModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     NgbModule,
   ],
-  providers: [],
+
+  providers: [AngularFirestore],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
