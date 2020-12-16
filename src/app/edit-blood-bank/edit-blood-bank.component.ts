@@ -7,15 +7,20 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./edit-blood-bank.component.css', '../app.component.css'],
 })
 export class EditBloodBankComponent implements OnInit {
-  phoneAddressForm: FormGroup;
+  formData: FormGroup;
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.phoneAddressForm = this.formBuilder.group({
-      contactName: [
+    this.formData = this.formBuilder.group({
+      hospitalName: [
         '',
-        Validators.compose([Validators.required, Validators.maxLength(250)]),
+        Validators.compose([Validators.required, Validators.maxLength(500)]),
       ],
+      hospitalAddress: [
+        '',
+        Validators.compose([Validators.required, Validators.maxLength(500)]),
+      ],
+      city: ['', Validators.required],
       phoneNumber1: [
         '',
         Validators.compose([
@@ -30,6 +35,30 @@ export class EditBloodBankComponent implements OnInit {
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(10),
+        ]),
+      ],
+      phoneNumber3: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(10),
+        ]),
+      ],
+      username: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ]),
+      ],
+      password: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
         ]),
       ],
     });

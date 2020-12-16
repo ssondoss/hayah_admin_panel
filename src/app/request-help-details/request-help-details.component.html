@@ -72,11 +72,7 @@
 
           <td>{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
-        <tr>
-          <td class="w-25 f-19">مكون الدم الذي يحتاجه المريض</td>
 
-          <td>{{ (item | async)?.bloodComponentType }}</td>
-        </tr>
         <tr>
           <td class="w-25 f-19">عدد وحدات الدم التي يحتاجها المريض</td>
 
@@ -116,14 +112,14 @@
         <tr>
           <td colspan="2">
             <button
-              class="btn btn-success btn-lg"
+              class="btn btn-success btn-lg m-2"
               (click)="acceptDonaitionRequest(item)"
             >
               <i class="fa fa-check"></i>
               الموافقة على الاستدعاء وإرساله لكافة المستخدمين
             </button>
             <button
-              class="btn btn-danger btn-lg mx-5"
+              class="btn btn-danger btn-lg m-2"
               (click)="rejectDonaitionRequest(item)"
             >
               <i class="fa fa-times"></i> رفض الاستدعاء
@@ -134,139 +130,3 @@
     </table>
   </div>
 </div>
-<!--<app-navbar></app-navbar>
-
-<div class="row p-0 m-0">
-  <div class="col-md-12">
-    <div class="card border-0">
-      <div class="card-body">
-        <div class="text-center mt-3">
-          <a *ngIf="show1 == 1" style="float: right" class="p-3">
-            <i
-              class="fa fa-minus   "
-              aria-hidden="true"
-              (click)="minimize1()"
-            ></i>
-          </a>
-          <a *ngIf="show1 == 0" style="float: right" class="p-3 pb-5">
-            <i
-              class="fa fa-plus   "
-              aria-hidden="true"
-              (click)="maximize1()"
-            ></i>
-          </a>
-          <h4 class="   mb-5">تفاصيل الإبلاغ أو الشكوى</h4>
-          <div *ngIf="show1 == 1" dir="rtl" class="pt-5">
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الرقم</f-19>
-              <p class="col-md-9 f-19">1</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">التاريخ</f-19>
-              <p class="col-md-9 f-19">17/10/1997</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الوقت</f-19>
-              <p class="col-md-9 f-19">12:30:30</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الحالة</f-19>
-              <p class="col-md-9 f-19">قيد الانتظار</p>
-            </div>
-
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">المحتوى</f-19>
-              <p class="col-md-9 f-19">
-                <img
-                  src="../../assets/logo.png"
-                  alt=""
-                  height="auto"
-                  width="auto"
-                />
-              </p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الموقع</f-19>
-              <p class="col-md-9 f-19">عمان / خلدا</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">رقم الهاتف للمحتوى</f-19>
-              <p class="col-md-9 f-19">لا يوجد</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">ملاحظات إضافية</f-19>
-              <p class="col-md-9 f-19">0798022719</p>
-            </div>
-          </div>
-          <hr class="m-5" />
-          <a *ngIf="show2 == 1" style="float: right" class="p-3">
-            <i
-              class="fa fa-minus   "
-              aria-hidden="true"
-              (click)="minimize2()"
-            ></i>
-          </a>
-          <a *ngIf="show2 == 0" style="float: right" class="p-3 pb-5">
-            <i
-              class="fa fa-plus   "
-              aria-hidden="true"
-              (click)="maximize2()"
-            ></i>
-          </a>
-          <h4 class="   mb-5">المرسل</h4>
-          <div *ngIf="show2 == 1" dir="rtl">
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الاسم</f-19>
-              <p class="col-md-9 f-19">سندس محمد رفاعي مراشدة</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الرقم الوطني</f-19>
-              <p class="col-md-9 f-19">09999999999</p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">رقم الهاتف عند التسجيل</f-19>
-              <p class="col-md-9 f-19">0798880575</p>
-            </div>
-          </div>
-          <hr class="m-5" />
-          <a *ngIf="show4 == 1" style="float: right" class="p-3">
-            <i
-              class="fa fa-minus   "
-              aria-hidden="true"
-              (click)="minimize4()"
-            ></i>
-          </a>
-          <a *ngIf="show4 == 0" style="float: right" class="p-3 pb-5">
-            <i
-              class="fa fa-plus   "
-              aria-hidden="true"
-              (click)="maximize4()"
-            ></i>
-          </a>
-          <h4 class="   mb-5">إضافة تعديلات</h4>
-          <div *ngIf="show4 == 1" dir="rtl">
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">الحالة</f-19>
-              <p class="col-md-9 f-19">
-                <select name="" id="" class="custom-select">
-                  <option value="">قيد الانتظار</option>
-                  <option value="">قيد المتابعة</option>
-                  <option value="">تم حلها</option>
-                  <option value="closed">تم رفضها</option>
-                </select>
-              </p>
-            </div>
-            <div class="row mb-4">
-              <f-19 class="   col-md-3 f-19">ملاحظات للجهة المرسلة</f-19>
-              <p class="col-md-9 f-19">
-                <textarea class="form-control" rows="5"> </textarea>
-              </p>
-            </div>
-          </div>
-          <hr class="m-5" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->

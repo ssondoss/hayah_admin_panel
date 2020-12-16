@@ -15,7 +15,6 @@
         <th>المستشفى التي يتعالج بها المريض</th>
         <th>زمرة الدم التي يحتاجها المريض</th>
         <th>عدد وحدات الدم التي يحتاجها المريض</th>
-        <th>مكون الدم الذي يحتاجه المريض</th>
         <th>التفاصيل</th>
       </thead>
       <tbody class="text-center">
@@ -27,7 +26,6 @@
           <td>{{ request.hospitalValue }}</td>
           <td>{{ request.bloodTypeValue }}</td>
           <td>{{ request.unitsValue }}</td>
-          <td>{{ request.bloodComponentType }}</td>
           <td>
             <a
               [routerLink]="['/approved-request-help-details']"

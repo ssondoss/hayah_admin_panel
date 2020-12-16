@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 import {
-  AngularFirestore,
   AngularFirestoreDocument,
+  AngularFirestore,
 } from '@angular/fire/firestore';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-request-help-details',
@@ -31,22 +34,31 @@ export class RequestHelpDetailsComponent implements OnInit {
   userId: any;
   userDoc: AngularFirestoreDocument<any>;
   user: Observable<any>;
-
+  currentUser: any;
+  filteredBanks = [];
   constructor(
     public afs: AngularFirestore,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    let user = JSON.parse(localStorage.getItem('currentSharekAdmin'));
-    console.log(user);
-    if (user == null || user == undefined || user == {}) {
+    this.filteredBanks.push('a');
+    this.filteredBanks.push('b');
+    this.filteredBanks.push('c');
+    this.filteredBanks.push('d');
+    this.currentUser = JSON.parse(localStorage.getItem('currentHayahAdmin'));
+    console.log(this.currentUser);
+    if (
+      this.currentUser == null ||
+      this.currentUser == undefined ||
+      this.currentUser == {}
+    ) {
       this.router.navigate(['/login']);
     } else {
       this.route.queryParams.subscribe((params) => {
         this.requestId = params['id'];
         console.log(this.requestId);
         this.requestId = this.requestId.trim();
-        this.itemDoc = this.afs.doc<any>('donation-request/' + this.requestId);
+        this.itemDoc = this.afs.doc<any>('new-requests/' + this.requestId);
         this.item = this.itemDoc.valueChanges();
         this.itemDoc.update({ viewed: true });
         this.item.subscribe((event) => {
@@ -74,7 +86,9 @@ export class RequestHelpDetailsComponent implements OnInit {
   acceptDonaitionRequest(request) {
     request.subscribe((element) => {
       this.deleteFromTheRequests(element.id);
-      let itemDoc = this.afs.doc<any>('accepted-donations/' + element.id);
+      let itemDoc = this.afs.doc<any>('accepted-requests/' + element.id);
+      element.acceptedBy = this.currentUser.username;
+      console.log(element);
       itemDoc.set(element);
       this.router.navigate(['/request-help']);
     });
@@ -83,14 +97,33 @@ export class RequestHelpDetailsComponent implements OnInit {
   rejectDonaitionRequest(request) {
     request.subscribe((element) => {
       this.deleteFromTheRequests(element.id);
-      let itemDoc = this.afs.doc<any>('accepted-donations/' + element.id);
+      let itemDoc = this.afs.doc<any>('rejected-requests/' + element.id);
+      Swal.fire({
+        title: 'Are you sure want to remove?',
+        text: 'You will not be able to recover this file!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it',
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Deleted!',
+            'Your imaginary file has been deleted.',
+            'success'
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
+        }
+      });
+      element.rejectedBy = this.currentUser.username;
       itemDoc.set(element);
       this.router.navigate(['/request-help']);
     });
   }
 
   deleteFromTheRequests(id: string): void {
-    let itemDoc = this.afs.doc<any>('donation-request/' + id);
+    let itemDoc = this.afs.doc<any>('new-requests/' + id);
     itemDoc.delete();
   }
 }

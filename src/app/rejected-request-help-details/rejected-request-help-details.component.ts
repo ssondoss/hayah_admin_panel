@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-rejected-request-help-details',
@@ -26,7 +27,7 @@ export class RejectedRequestHelpDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    let user = JSON.parse(localStorage.getItem('currentSharekAdmin'));
+    let user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
     console.log(user);
     if (user == null || user == undefined || user == {}) {
       this.router.navigate(['/login']);
@@ -35,9 +36,7 @@ export class RejectedRequestHelpDetailsComponent implements OnInit {
         this.requestId = params['id'];
         console.log(this.requestId);
         this.requestId = this.requestId.trim();
-        this.itemDoc = this.afs.doc<any>(
-          'rejected-donations/' + this.requestId
-        );
+        this.itemDoc = this.afs.doc<any>('rejected-requests/' + this.requestId);
         this.item = this.itemDoc.valueChanges();
         this.itemDoc.update({ viewed: true });
         this.item.subscribe((event) => {

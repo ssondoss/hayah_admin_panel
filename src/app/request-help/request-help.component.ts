@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -19,6 +19,6 @@ export class RequestHelpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.requests = this.afs.collection('donation-request').valueChanges();
+    this.requests = this.afs.collection('new-requests').valueChanges();
   }
 }

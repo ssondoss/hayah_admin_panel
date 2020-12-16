@@ -44,7 +44,7 @@ div {
 }
 mat-error {
   margin-top: 10px !important;
-  font-size: 14px !important;
+  font-size: 15px !important;
   color: #d34444 !important;
 }
 .border-bottom-primary {
@@ -88,6 +88,19 @@ table {
 }
 .alert-black {
   border: 1px solid #574b70;
-  height: 50px !important;
+  height: auto !important;
+  width: auto !important;
   background-color: #574b7015;
+}
+label {
+  font-size: large !important;
+}
+@media screen and (max-width: 769px) {
+  .t-19 {
+    font-size: 17px !important;
+  }
+
+  .f-19 {
+    font-size: 17px !important;
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,6 +20,6 @@ export class RejectedRequestHelpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.requests = this.afs.collection('rejected-donations').valueChanges();
+    this.requests = this.afs.collection('rejected-requests').valueChanges();
   }
 }

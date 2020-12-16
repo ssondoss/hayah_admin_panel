@@ -13,6 +13,7 @@ import { ApprovedRequestHelpComponent } from './approved-request-help/approved-r
 import { ApprovedRequestHelpDetailsComponent } from './approved-request-help-details/approved-request-help-details.component';
 import { RejectedRequestHelpComponent } from './rejected-request-help/rejected-request-help.component';
 import { RejectedRequestHelpDetailsComponent } from './rejected-request-help-details/rejected-request-help-details.component';
+import { SendNotificationComponent } from './send-notification/send-notification.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'rejected-request-help-details',
     component: RejectedRequestHelpDetailsComponent,
+  },
+  {
+    path: 'send-notification',
+    component: SendNotificationComponent,
   },
 
   { path: 'request-help-details', component: RequestHelpDetailsComponent },

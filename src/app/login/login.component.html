@@ -21,15 +21,15 @@
               <input
                 type="text"
                 class="form-control"
-                formControlName="email"
+                formControlName="username"
                 required
                 maxlength="99"
               />
 
               <mat-error
                 *ngIf="
-                  loginForm.controls.email.errors?.required &&
-                  loginForm.controls.email.touched
+                  loginForm.controls.username.errors?.required &&
+                  loginForm.controls.username.touched
                 "
               >
                 هذا الحقل مطلوب

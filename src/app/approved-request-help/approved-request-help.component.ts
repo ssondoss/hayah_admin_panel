@@ -20,6 +20,6 @@ export class ApprovedRequestHelpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.requests = this.afs.collection('accepted-donations').valueChanges();
+    this.requests = this.afs.collection('accepted-requests').valueChanges();
   }
 }

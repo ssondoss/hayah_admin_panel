@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css', '../app.component.css'],
 })
 export class HomeComponent implements OnInit {
+  user: any;
   constructor(firestore: AngularFirestore, private router: Router) {
-    let user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
-    console.log(user);
-    if (user == null || user == undefined || user == {}) {
+    this.user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
+    console.log(this.user);
+    if (this.user == null || this.user == undefined || this.user == {}) {
       this.router.navigate(['/login']);
     }
   }

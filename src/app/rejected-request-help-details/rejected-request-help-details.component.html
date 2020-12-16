@@ -72,11 +72,7 @@
 
           <td>{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
-        <tr>
-          <td class="w-25 f-19">مكون الدم الذي يحتاجه المريض</td>
 
-          <td>{{ (item | async)?.bloodComponentType }}</td>
-        </tr>
         <tr>
           <td class="w-25 f-19">عدد وحدات الدم التي يحتاجها المريض</td>
 
@@ -116,7 +112,7 @@
         <tr>
           <td>اسم المسؤول الذي قام برفض الاستدعاء</td>
 
-          <td>sondos marashdeh</td>
+          <td>{{ (item | async)?.rejectedBy }}</td>
         </tr>
         <tr>
           <td>سبب رفضه من المسؤول</td>

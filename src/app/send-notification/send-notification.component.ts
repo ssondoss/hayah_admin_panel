@@ -2,17 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { firestore } from 'firebase';
+declare var $: any;
 
 @Component({
-  selector: 'app-blood-bank',
-  templateUrl: './blood-bank.component.html',
-  styleUrls: ['./blood-bank.component.css', '../app.component.css'],
+  selector: 'app-send-notification',
+  templateUrl: './send-notification.component.html',
+  styleUrls: ['./send-notification.component.css', '../app.component.css'],
 })
-export class BloodBankComponent implements OnInit {
+export class SendNotificationComponent implements OnInit {
   formData: FormGroup;
   BloodBanksValues: any;
   user: any;
+  checkAll = false;
+  a_plus = false;
+  b_plus = false;
+  ab_plus = false;
+  o_minus = false;
+  a_minus = false;
+  b_minus = false;
+  ab_minus = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -24,21 +32,16 @@ export class BloodBankComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.BloodBanksValues = firestore
-      .collection('blood-bank-admin')
+      .collection('accepted-requests')
       .valueChanges();
   }
 
   ngOnInit(): void {
     this.formData = this.formBuilder.group({
-      hospitalName: [
+      contactName: [
         '',
-        Validators.compose([Validators.required, Validators.maxLength(500)]),
+        Validators.compose([Validators.required, Validators.maxLength(250)]),
       ],
-      hospitalAddress: [
-        '',
-        Validators.compose([Validators.required, Validators.maxLength(500)]),
-      ],
-      city: ['', Validators.required],
       phoneNumber1: [
         '',
         Validators.compose([
@@ -63,22 +66,13 @@ export class BloodBankComponent implements OnInit {
           Validators.maxLength(10),
         ]),
       ],
-      username: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-        ]),
-      ],
-      password: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-        ]),
-      ],
+      username: [''],
+      password: [''],
+      city: [''],
+      hospitalName: ['', Validators.required],
+      hospitalAddress: ['', Validators.required],
+      bloodUnitsCount: ['', Validators.required],
+      notes: ['', Validators.required],
     });
   }
 
@@ -87,25 +81,20 @@ export class BloodBankComponent implements OnInit {
       'blood-bank-admin/' + this.formData.controls['username'].value
     );
     ref.set({
-      contactName: this.formData.controls['hospitalName'].value,
+      contactName: this.formData.controls['contactName'].value,
       phoneNumber1: this.formData.controls['phoneNumber1'].value,
       phoneNumber2: this.formData.controls['phoneNumber2'].value,
       phoneNumber3: this.formData.controls['phoneNumber3'].value,
       username: this.formData.controls['username'].value,
       password: this.formData.controls['password'].value,
       city: this.formData.controls['city'].value,
-      hospital: this.formData.controls['hospitalAddress'].value,
+      hospital: this.formData.controls['hospital'].value,
     });
     this.formData = this.formBuilder.group({
-      hospitalName: [
+      contactName: [
         '',
-        Validators.compose([Validators.required, Validators.maxLength(500)]),
+        Validators.compose([Validators.required, Validators.maxLength(250)]),
       ],
-      hospitalAddress: [
-        '',
-        Validators.compose([Validators.required, Validators.maxLength(500)]),
-      ],
-      city: ['', Validators.required],
       phoneNumber1: [
         '',
         Validators.compose([
@@ -130,22 +119,11 @@ export class BloodBankComponent implements OnInit {
           Validators.maxLength(10),
         ]),
       ],
-      username: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-        ]),
-      ],
-      password: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-        ]),
-      ],
+      city: [''],
+      hospitalName: ['', Validators.required],
+      hospitalAddress: ['', Validators.required],
+      bloodUnitsCount: ['', Validators.required],
+      notes: ['', Validators.required],
     });
   }
 
@@ -158,5 +136,10 @@ export class BloodBankComponent implements OnInit {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+  }
+
+  selectAll() {
+    this.checkAll = !this.checkAll;
+    console.log(this.checkAll);
   }
 }

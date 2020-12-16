@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/firestore';
+
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import {
+  AngularFirestoreDocument,
+  AngularFirestore,
+} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required])],
+      username: ['', Validators.compose([Validators.required])],
       password: [
         '',
         Validators.compose([Validators.required, Validators.minLength(6)]),
@@ -41,9 +42,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.itemDoc = this.afs.doc<any>(
-      'admins/' + this.loginForm.controls['email'].value
+      'blood-bank-admin/' + this.loginForm.controls['username'].value
     );
     this.item = this.itemDoc.valueChanges();
+
     this.item.subscribe((event) => {
       console.log(event);
       if (event != undefined) {
@@ -51,10 +53,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentHayahAdmin', JSON.stringify(event));
           this.router.navigate(['/']);
         } else {
-          alert('Worng email/password');
+          alert('Worng username/password');
         }
       } else {
-        alert('Worng email/password');
+        alert('Worng username/password');
       }
     });
   }

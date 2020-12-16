@@ -11,7 +11,7 @@
           class="form-control"
           formControlName="hospitalName"
           required
-          maxlength="250"
+          maxlength="500"
         />
         <mat-error
           *ngIf="
@@ -24,7 +24,13 @@
       </div>
       <div class="form-group col-md-2 text-right">
         <label for=""> المحافظة التي تتواجد بها المستشفى </label>
-        <select name="" id="" class="custom-select" formControlName="city">
+        <select
+          name=""
+          id=""
+          class="custom-select"
+          formControlName="city"
+          required
+        >
           <option value="عمان">عمان</option>
           <option value="إربد">إربد</option>
           <option value="الكرك">الكرك</option>
@@ -51,9 +57,19 @@
         <label for="">عنوان المستشفى التفصيلي</label>
         <textarea
           class="form-control"
-          rows="3"
-          formControlName="hospital"
+          rows="2"
+          required
+          maxlength="500"
+          formControlName="hospitalAddress"
         ></textarea>
+        <mat-error
+          *ngIf="
+            formData.controls.hospitalAddress.errors?.required &&
+            formData.controls.hospitalAddress.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
       </div>
       <div class="form-group col-md-2 text-right">
         <label for=""> رقم الهاتف للبنك ( 1 ) </label>
@@ -109,6 +125,17 @@
           maxlength="10"
           minlength="6"
         />
+        <mat-error
+          *ngIf="
+            formData.controls.phoneNumber3.errors?.required &&
+            formData.controls.phoneNumber3.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+        <mat-error *ngIf="formData.controls.phoneNumber3.hasError('minlength')">
+          يجب أن يحتوي على 6 عناصر أو أكثر
+        </mat-error>
       </div>
 
       <div class="form-group col-md-2 text-right">
@@ -118,9 +145,20 @@
           class="form-control"
           formControlName="username"
           required
-          maxlength="10"
-          minlength="6"
+          maxlength="50"
+          minlength="3"
         />
+        <mat-error
+          *ngIf="
+            formData.controls.username.errors?.required &&
+            formData.controls.username.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+        <mat-error *ngIf="formData.controls.username.hasError('minlength')">
+          يجب أن يحتوي على 3 عناصر أو أكثر
+        </mat-error>
       </div>
       <div class="form-group col-md-2 text-right">
         <label for=""> كلمة السر لحساب بنك الدم </label>
@@ -129,9 +167,20 @@
           class="form-control"
           formControlName="password"
           required
-          maxlength="10"
-          minlength="6"
+          maxlength="50"
+          minlength="3"
         />
+        <mat-error
+          *ngIf="
+            formData.controls.password.errors?.required &&
+            formData.controls.password.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+        <mat-error *ngIf="formData.controls.password.hasError('minlength')">
+          يجب أن تحتوي على 3 عناصر أو أكثر
+        </mat-error>
       </div>
       <div class="form-group col-md-2 text-center">
         <button
@@ -161,8 +210,8 @@
       </thead>
       <tbody class="text-center">
         <tr *ngFor="let bloodBank of BloodBanksValues | async">
-          <td>{{ bloodBank.id }}</td>
-          <td>{{ bloodBank.hospital }}</td>
+          <td>{{ bloodBank.username }}</td>
+          <td>{{ bloodBank.hospitalName }}</td>
           <td>{{ bloodBank.city }}</td>
           <td>{{ bloodBank.address }}</td>
           <td>{{ bloodBank.phoneNumber1 }}</td>

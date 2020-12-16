@@ -18,6 +18,7 @@ import { ApprovedRequestHelpComponent } from './approved-request-help/approved-r
 import { ApprovedRequestHelpDetailsComponent } from './approved-request-help-details/approved-request-help-details.component';
 import { RejectedRequestHelpDetailsComponent } from './rejected-request-help-details/rejected-request-help-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { PopoverModule } from 'ngx-smart-popover';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
@@ -26,6 +27,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SendNotificationComponent } from './send-notification/send-notification.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -43,13 +46,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ApprovedRequestHelpComponent,
     ApprovedRequestHelpDetailsComponent,
     RejectedRequestHelpDetailsComponent,
+    SendNotificationComponent,
   ],
   imports: [
     BrowserModule,
     PopoverModule,
     AppRoutingModule,
+    SweetAlert2Module.forRoot(),
     BrowserAnimationsModule,
     MatFormFieldModule,
+
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
