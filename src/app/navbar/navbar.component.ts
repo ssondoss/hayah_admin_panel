@@ -7,7 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css', '../app.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  user: any;
+  constructor(private router: Router) {
+    this.user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
+    console.log(this.user);
+    if (this.user == null || this.user == undefined || this.user == {}) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {}
 

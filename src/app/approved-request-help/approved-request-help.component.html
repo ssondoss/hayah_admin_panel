@@ -8,18 +8,16 @@
   <div class="table-responsive">
     <table class="table table-bordered" dir="rtl">
       <thead class="text-center alert-success">
-        <th>#</th>
         <th>اسم المريض الرباعي</th>
         <th>عمر المريض</th>
         <th>الرقم الوطني</th>
         <th>المستشفى التي يتعالج بها المريض</th>
-        <th>زمرة الدم التي يحتاجها المريض</th>
+        <th>زمر(ة) الدم التي يحتاجها المريض</th>
         <th>عدد وحدات الدم التي يحتاجها المريض</th>
         <th>التفاصيل</th>
       </thead>
       <tbody class="text-center">
         <tr *ngFor="let request of requests | async">
-          <td>{{ request.id }}</td>
           <td>{{ request.nameValue }}</td>
           <td>{{ request.dateValue }}</td>
           <td>{{ request.nationalIdValue }}</td>

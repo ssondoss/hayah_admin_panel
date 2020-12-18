@@ -31,18 +31,18 @@
           required
           class="custom-select"
         >
-          <option value="">عمان</option>
-          <option value="closed">إربد</option>
-          <option value="">الكرك</option>
-          <option value="closed">معان</option>
-          <option value="">الطفيلة</option>
-          <option value="closed">العقبة</option>
-          <option value="">الزرقاء</option>
-          <option value="closed">جرش</option>
-          <option value="">عجلون</option>
-          <option value="closed">السلط</option>
-          <option value="">مادبا</option>
-          <option value="closed">البلقاء</option>
+          <option value="عمان">عمان</option>
+          <option value="إربد">إربد</option>
+          <option value="الكرك">الكرك</option>
+          <option value="1معان">معان</option>
+          <option value="الطفيلة">الطفيلة</option>
+          <option value="العقبة">العقبة</option>
+          <option value="الزرقاء">الزرقاء</option>
+          <option value="جرش">جرش</option>
+          <option value="عجلون">عجلون</option>
+          <option value="السلط">السلط</option>
+          <option value="مادبا">مادبا</option>
+          <option value="البلقاء">البلقاء</option>
         </select>
         <mat-error
           *ngIf="
@@ -147,6 +147,7 @@
           required
           maxlength="50"
           minlength="3"
+          disabled
         />
         <mat-error
           *ngIf="
@@ -183,7 +184,13 @@
         </mat-error>
       </div>
       <div class="form-group col-md-2 text-center">
-        <button class="btn btn-primary mt-30px w-75 py-2">تعديل</button>
+        <button
+          class="btn btn-primary mt-30px w-75 py-2"
+          (click)="update()"
+          type="button"
+        >
+          تعديل
+        </button>
       </div>
     </form>
   </div>

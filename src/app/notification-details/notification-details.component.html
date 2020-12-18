@@ -4,70 +4,63 @@
     <table class="table table-bordered" dir="rtl">
       <thead>
         <th colspan="2" class="bg-light">
-          <h4 class="text-black text-center pt-1">
-            تفاصيل إشعار بنك الدم لطلب وحدات الدم - رقم (666)
-          </h4>
+          <h4 class="text-black text-center pt-1">تفاصيل إشعار بنك الدم</h4>
         </th>
       </thead>
-      <tbody class="text-center font-weight-bold">
-        <tr>
-          <td class="w-25 f-19">رقم الإشعار</td>
-
-          <td>1</td>
-        </tr>
+      <tbody class="text-center">
         <tr>
           <td class="w-25 f-19">تاريخ إرسال الإشعار</td>
 
-          <td>17/10/1997</td>
+          <td>{{ (item | async)?.date }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">اسم المستشفى</td>
 
-          <td>17/10/1997</td>
+          <td>{{ (item | async)?.hospitalValue }}</td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">المحافظة التي تتواجد بها المستشفى</td>
 
-          <td>أنثى</td>
+          <td>{{ (item | async)?.cityValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">العنوان التفصيلي للمستشفى</td>
 
-          <td>أنثى</td>
+          <td>{{ (item | async)?.hospitalAddress }}</td>
         </tr>
 
         <tr>
-          <td class="w-25 f-19">زمرة الدم التي يحتاجها بنك الدم</td>
+          <td class="w-25 f-19">زمر(ة) الدم التي يحتاجها بنك الدم</td>
 
-          <td>O+</td>
+          <td>{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">عدد وحدات الدم التي يحتاجها بنك الدم</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.unitsValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">رقم هاتف بنك الدم (1)</td>
 
-          <td>0798022719</td>
+          <td>{{ (item | async)?.phoneValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">رقم هاتف بنك الدم (2)</td>
 
-          <td>6</td>
+          <td>{{ (item | async)?.altPhoneValue }}</td>
         </tr>
         <tr>
           <td class="w-25 f-19">رقم هاتف بنك الدم (3)</td>
 
-          <td>7</td>
+          <td>{{ (item | async)?.altPhoneValue2 }}</td>
         </tr>
 
         <tr>
           <td class="w-25 f-19">ملاحظات إضافية من بنك الدم</td>
 
-          <td></td>
+          <td>{{ (item | async)?.notesValue }}</td>
         </tr>
         <!-- <tr>
           <td class="w-25 f-19">عدد المستجيبين</td>

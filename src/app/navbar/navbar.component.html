@@ -22,7 +22,7 @@
         </a>
       </li>
 
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="user.role === 'MAIN_ADMIN'">
         <a
           class="nav-link dropdown-toggle"
           href="#"
@@ -53,8 +53,11 @@
           </a>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="user.role === 'MAIN_ADMIN'">
         <a class="nav-link" routerLink="/blood-bank"> بنوك الدم</a>
+      </li>
+      <li class="nav-item" *ngIf="user.role === 'BLOOD_BANK'">
+        <a class="nav-link" routerLink="/send-notification"> ارسال طلب </a>
       </li>
 
       <li class="nav-item">

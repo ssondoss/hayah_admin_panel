@@ -9,12 +9,7 @@
           </h4>
         </th>
       </thead>
-      <tbody class="text-center font-weight-bold">
-        <tr>
-          <td class="w-25 f-19">رقم الاستدعاء</td>
-
-          <td>{{ (item | async)?.id }}</td>
-        </tr>
+      <tbody class="text-center">
         <tr>
           <td class="w-25 f-19">تاريخ إرسال الاستدعاء</td>
 
@@ -68,9 +63,9 @@
           <td>{{ (item | async)?.floorValue }}</td>
         </tr>
         <tr>
-          <td class="w-25 f-19">زمرة الدم التي يحتاجها المريض</td>
+          <td class="w-25 f-19">زمر(ة) الدم التي يحتاجها المريض</td>
 
-          <td>{{ (item | async)?.bloodTypeValue }}</td>
+          <td dir="ltr">{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
 
         <tr>

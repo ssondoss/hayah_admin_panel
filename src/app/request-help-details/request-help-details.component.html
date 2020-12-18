@@ -5,16 +5,11 @@
       <thead>
         <th colspan="2" class="bg-light">
           <h4 class="text-black text-center pt-1">
-            تفاصيل الاستدعاء لوحدات الدم - رقم ({{ (item | async)?.id }})
+            تفاصيل الاستدعاء لوحدات الدم
           </h4>
         </th>
       </thead>
-      <tbody class="text-center font-weight-bold">
-        <tr>
-          <td class="w-25 f-19">رقم الاستدعاء</td>
-
-          <td>{{ (item | async)?.id }}</td>
-        </tr>
+      <tbody class="text-center">
         <tr>
           <td class="w-25 f-19">تاريخ إرسال الاستدعاء</td>
 
@@ -68,7 +63,7 @@
           <td>{{ (item | async)?.floorValue }}</td>
         </tr>
         <tr>
-          <td class="w-25 f-19">زمرة الدم التي يحتاجها المريض</td>
+          <td class="w-25 f-19">زمر(ة) الدم المريض</td>
 
           <td>{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
@@ -86,9 +81,9 @@
         </tr>
 
         <tr>
-          <td class="w-25 f-19">سبب الحاجة لوحدات الدم</td>
+          <td class="w-25 f-19">رقم الهاتف البديل للمريض</td>
 
-          <td>{{ (item | async)?.reasonValue }}</td>
+          <td>{{ (item | async)?.altPhoneValue }}</td>
         </tr>
 
         <tr>

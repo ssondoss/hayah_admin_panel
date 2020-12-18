@@ -10,16 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class ApprovedRequestHelpComponent implements OnInit {
   requests: Observable<any[]>;
-
+  user: any;
   constructor(private router: Router, public afs: AngularFirestore) {
-    let user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
-    console.log(user);
-    if (user == null || user == undefined || user == {}) {
+    this.user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
+    if (this.user == null || this.user == undefined || this.user == {}) {
       this.router.navigate(['/login']);
+    } else if (this.user.role === 'BLOOD_BANK') {
+      this.router.navigate(['/']);
     }
   }
 
   ngOnInit(): void {
-    this.requests = this.afs.collection('accepted-requests').valueChanges();
+    if (this.user.role == 'MAIN_ADMIN')
+      this.requests = this.afs.collection('accepted-requests').valueChanges();
   }
 }

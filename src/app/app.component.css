@@ -81,7 +81,7 @@ table {
 }
 
 .f-19 {
-  font-size: 19px !important;
+  font-size: 17px !important;
 }
 .border-primary {
   border: 2px solid #8675a9 !important;
@@ -93,7 +93,7 @@ table {
   background-color: #574b7015;
 }
 label {
-  font-size: large !important;
+  font-size: 17px !important;
 }
 @media screen and (max-width: 769px) {
   .t-19 {

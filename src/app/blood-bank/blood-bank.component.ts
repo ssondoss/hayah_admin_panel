@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { firestore } from 'firebase';
+import { AngularFirestore } from '@angular/fire/firestore';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-blood-bank',
@@ -22,10 +22,10 @@ export class BloodBankComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentHayahAdmin'));
     if (this.user == null || this.user == undefined || this.user == {}) {
       this.router.navigate(['/login']);
+    } else if (this.user.role === 'BLOOD_BANK') {
+      this.router.navigate(['/']);
     }
-    this.BloodBanksValues = firestore
-      .collection('blood-bank-admin')
-      .valueChanges();
+    this.getBloodBanks();
   }
 
   ngOnInit(): void {
@@ -87,14 +87,15 @@ export class BloodBankComponent implements OnInit {
       'blood-bank-admin/' + this.formData.controls['username'].value
     );
     ref.set({
-      contactName: this.formData.controls['hospitalName'].value,
+      hospitalName: this.formData.controls['hospitalName'].value,
       phoneNumber1: this.formData.controls['phoneNumber1'].value,
       phoneNumber2: this.formData.controls['phoneNumber2'].value,
       phoneNumber3: this.formData.controls['phoneNumber3'].value,
       username: this.formData.controls['username'].value,
       password: this.formData.controls['password'].value,
       city: this.formData.controls['city'].value,
-      hospital: this.formData.controls['hospitalAddress'].value,
+      hospitalAddress: this.formData.controls['hospitalAddress'].value,
+      role: 'BLOOD_BANK',
     });
     this.formData = this.formBuilder.group({
       hospitalName: [
@@ -147,6 +148,13 @@ export class BloodBankComponent implements OnInit {
         ]),
       ],
     });
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Added ',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 
   makeId(length): string {
@@ -158,5 +166,24 @@ export class BloodBankComponent implements OnInit {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+  }
+  getBloodBanks() {
+    this.BloodBanksValues = this.firestore
+      .collection('blood-bank-admin', (ref) =>
+        ref.where('role', '!=', 'MAIN_ADMIN')
+      )
+      .valueChanges();
+  }
+  delete(username) {
+    let ref = this.firestore.doc<any>('blood-bank-admin/' + username);
+    ref.delete();
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Deleted ',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    this.getBloodBanks();
   }
 }

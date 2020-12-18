@@ -5,16 +5,11 @@
       <thead>
         <th colspan="2" class="alert-danger">
           <h4 class="text-black text-center pt-1">
-            تفاصيل الاستدعاء لوحدات الدم - رقم (666)
+            تفاصيل الاستدعاء لوحدات الدم
           </h4>
         </th>
       </thead>
-      <tbody class="text-center font-weight-bold">
-        <tr>
-          <td class="w-25 f-19">رقم الاستدعاء</td>
-
-          <td>{{ (item | async)?.id }}</td>
-        </tr>
+      <tbody class="text-center f">
         <tr>
           <td class="w-25 f-19">تاريخ إرسال الاستدعاء</td>
 
@@ -68,7 +63,7 @@
           <td>{{ (item | async)?.floorValue }}</td>
         </tr>
         <tr>
-          <td class="w-25 f-19">زمرة الدم التي يحتاجها المريض</td>
+          <td class="w-25 f-19">زمر(ة) الدم التي يحتاجها المريض</td>
 
           <td>{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
@@ -117,7 +112,7 @@
         <tr>
           <td>سبب رفضه من المسؤول</td>
 
-          <td>sondos marashdeh</td>
+          <td>{{ (item | async)?.rejectedFor }}</td>
         </tr>
       </tbody>
     </table>

@@ -41,10 +41,6 @@ export class RequestHelpDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.filteredBanks.push('a');
-    this.filteredBanks.push('b');
-    this.filteredBanks.push('c');
-    this.filteredBanks.push('d');
     this.currentUser = JSON.parse(localStorage.getItem('currentHayahAdmin'));
     console.log(this.currentUser);
     if (
@@ -53,6 +49,8 @@ export class RequestHelpDetailsComponent implements OnInit {
       this.currentUser == {}
     ) {
       this.router.navigate(['/login']);
+    } else if (this.currentUser.role === 'BLOOD_BANK') {
+      this.router.navigate(['/']);
     } else {
       this.route.queryParams.subscribe((params) => {
         this.requestId = params['id'];
@@ -84,41 +82,76 @@ export class RequestHelpDetailsComponent implements OnInit {
   }
 
   acceptDonaitionRequest(request) {
-    request.subscribe((element) => {
-      this.deleteFromTheRequests(element.id);
-      let itemDoc = this.afs.doc<any>('accepted-requests/' + element.id);
-      element.acceptedBy = this.currentUser.username;
-      console.log(element);
-      itemDoc.set(element);
-      this.router.navigate(['/request-help']);
+    Swal.fire({
+      title: 'قبول الاستدعاء',
+      text: 'هل انت متأكد من قبول الاستدعاء ؟',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'الغاء',
+      confirmButtonText: 'نعم ، تابع',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        request.subscribe((element) => {
+          this.deleteFromTheRequests(element.id);
+          let itemDoc = this.afs.doc<any>('accepted-requests/' + element.id);
+
+          element.acceptedBy = this.currentUser.username;
+          console.log(element);
+          itemDoc.set(element);
+          element.bloodTypeValue = this.getTypesHeCanTake(
+            element.bloodTypeValue.trim()
+          );
+          console.log(element);
+          itemDoc = this.afs.doc<any>('donation_notifications/' + element.id);
+          element.by = 'USER';
+          itemDoc.set(element);
+
+          history.back();
+        });
+        Swal.fire('تم!', 'تم قبول الاستدعاء', 'success');
+      }
     });
   }
 
-  rejectDonaitionRequest(request) {
-    request.subscribe((element) => {
-      this.deleteFromTheRequests(element.id);
-      let itemDoc = this.afs.doc<any>('rejected-requests/' + element.id);
-      Swal.fire({
-        title: 'Are you sure want to remove?',
-        text: 'You will not be able to recover this file!',
-        icon: 'warning',
+  getTypesHeCanTake(type): string {
+    let types = '';
+    if (type == 'O+') types = ' O+ , O- ';
+    else if (type == 'O-') types = ' O- ';
+    else if (type == 'A+') types = ' A+ , A- , O+ , O- ';
+    else if (type == 'A-') types = ' A- , O- ';
+    else if (type == 'B+') types = ' B+ , B- , O+ , O- ';
+    else if (type == 'B-') types = ' B- , O- ';
+    else if (type == 'AB+') types = ' A+ , A- , B+ , B- , AB+ , AB- , O+ , O- ';
+    else if (type == 'AB-') types = ' A- , B- , AB- , O- ';
+
+    return types;
+  }
+
+  async rejectDonaitionRequest(request) {
+    request.subscribe(async (element) => {
+      const { value: text } = await Swal.fire({
+        input: 'textarea',
+        inputLabel: 'سبب الرفض',
+        inputPlaceholder: 'سبب الرفض',
+        inputAttributes: {
+          'aria-label': 'سبب الرفض',
+        },
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it',
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire(
-            'Deleted!',
-            'Your imaginary file has been deleted.',
-            'success'
-          );
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
-        }
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'الغاء',
+        confirmButtonText: 'نعم ، تابع',
       });
-      element.rejectedBy = this.currentUser.username;
-      itemDoc.set(element);
-      this.router.navigate(['/request-help']);
+      if (text) {
+        this.deleteFromTheRequests(element.id);
+        let itemDoc = this.afs.doc<any>('rejected-requests/' + element.id);
+        element.rejectedFor = text;
+        element.rejectedBy = this.currentUser.username;
+        itemDoc.set(element);
+        history.back();
+      }
     });
   }
 

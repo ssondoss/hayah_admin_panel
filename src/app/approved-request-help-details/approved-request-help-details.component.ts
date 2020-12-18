@@ -32,19 +32,23 @@ export class ApprovedRequestHelpDetailsComponent implements OnInit {
     console.log(user);
     if (user == null || user == undefined || user == {}) {
       this.router.navigate(['/login']);
+    } else if (user.role === 'BLOOD_BANK') {
+      this.router.navigate(['/']);
     } else {
       this.route.queryParams.subscribe((params) => {
         this.requestId = params['id'];
         console.log(this.requestId);
         this.requestId = this.requestId.trim();
-        this.itemDoc = this.afs.doc<any>('accepted-requests/' + this.requestId);
+        this.itemDoc = this.afs.doc<any>(
+          'donation_notifications/' + this.requestId
+        );
         this.item = this.itemDoc.valueChanges();
-        this.itemDoc.update({ viewed: true });
+        // this.itemDoc.update({ viewed: true });
         this.item.subscribe((event) => {
-          this.userId = event.user;
-          console.log(this.userId);
-          this.userDoc = this.afs.doc<any>('users/' + this.userId.trim());
-          this.user = this.userDoc.valueChanges();
+          // this.userId = event.user;
+          // console.log(this.userId);
+          // this.userDoc = this.afs.doc<any>('users/' + this.userId.trim());
+          // this.user = this.userDoc.valueChanges();
         });
       });
     }

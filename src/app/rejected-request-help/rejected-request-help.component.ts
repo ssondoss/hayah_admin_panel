@@ -16,6 +16,8 @@ export class RejectedRequestHelpComponent implements OnInit {
     console.log(user);
     if (user == null || user == undefined || user == {}) {
       this.router.navigate(['/login']);
+    } else if (user.role === 'BLOOD_BANK') {
+      this.router.navigate(['/']);
     }
   }
 
