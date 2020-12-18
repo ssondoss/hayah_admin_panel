@@ -17,7 +17,7 @@
       <tbody class="text-center">
         <tr *ngFor="let request of requests | async">
           <td>{{ request.nameValue }}</td>
-          <td>{{ request.dateValue }}</td>
+          <td>{{ request.dateValue * 1000 | date: "dd/MM/yyyy" }}</td>
           <td>{{ request.nationalIdValue }}</td>
           <td>{{ request.hospitalValue }}</td>
           <td>{{ request.bloodTypeValue }}</td>
