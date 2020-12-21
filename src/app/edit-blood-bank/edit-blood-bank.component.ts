@@ -175,9 +175,9 @@ export class EditBloodBankComponent implements OnInit {
       role: 'BLOOD_BANK',
     });
     Swal.fire({
-      position: 'top-end',
+      position: 'top',
       icon: 'success',
-      title: 'Your work has been saved',
+      title: 'لقد تم حفظ تعديلك بنجاح',
       showConfirmButton: false,
       timer: 1500,
     }).then(() => history.back());

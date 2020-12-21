@@ -63,9 +63,9 @@
           <td>{{ (item | async)?.floorValue }}</td>
         </tr>
         <tr>
-          <td class="w-25 f-19">زمر(ة) الدم التي يحتاجها المريض</td>
+          <td class="w-25 f-19">زمرة دم المريض</td>
 
-          <td>{{ (item | async)?.bloodTypeValue }}</td>
+          <td dir="ltr">{{ (item | async)?.bloodTypeValue }}</td>
         </tr>
 
         <tr>
@@ -78,6 +78,11 @@
           <td class="w-25 f-19">رقم هاتف المريض</td>
 
           <td>{{ (item | async)?.phoneValue }}</td>
+        </tr>
+        <tr>
+          <td class="w-25 f-19">رقم هاتف المريض (بديل )</td>
+
+          <td>{{ (item | async)?.altPhoneValue }}</td>
         </tr>
 
         <tr>
@@ -105,7 +110,7 @@
           <td>{{ (item | async)?.notesValue }}</td>
         </tr>
         <tr>
-          <td>اسم المسؤول الذي قام برفض الاستدعاء</td>
+          <td>اسم المشرف الرئيسي الذي قام برفض الاستدعاء</td>
 
           <td>{{ (item | async)?.rejectedBy }}</td>
         </tr>

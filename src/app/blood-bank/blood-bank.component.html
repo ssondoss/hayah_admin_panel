@@ -74,7 +74,7 @@
       <div class="form-group col-md-2 text-right">
         <label for=""> رقم الهاتف للبنك ( 1 ) </label>
         <input
-          type="text"
+          type="tel"
           class="form-control"
           formControlName="phoneNumber1"
           required
@@ -96,7 +96,7 @@
       <div class="form-group col-md-2 text-right">
         <label for=""> رقم الهاتف للبنك ( 2 ) </label>
         <input
-          type="text"
+          type="tel"
           class="form-control"
           formControlName="phoneNumber2"
           required
@@ -118,7 +118,7 @@
       <div class="form-group col-md-2 text-right">
         <label for=""> رقم الهاتف للبنك ( 3 ) </label>
         <input
-          type="text"
+          type="tel"
           class="form-control"
           formControlName="phoneNumber3"
           required
@@ -211,7 +211,7 @@
         <tr *ngFor="let bloodBank of BloodBanksValues | async">
           <td>{{ bloodBank.hospitalName }}</td>
           <td>{{ bloodBank.city }}</td>
-          <td>{{ bloodBank.address }}</td>
+          <td>{{ bloodBank.hospitalAddress }}</td>
           <td>{{ bloodBank.phoneNumber1 }}</td>
           <td>{{ bloodBank.phoneNumber2 }}</td>
           <td>{{ bloodBank.phoneNumber3 }}</td>

@@ -98,11 +98,12 @@ export class RequestHelpDetailsComponent implements OnInit {
           let itemDoc = this.afs.doc<any>('accepted-requests/' + element.id);
 
           element.acceptedBy = this.currentUser.username;
-          console.log(element);
-          itemDoc.set(element);
+          element.patientBloodType = element.bloodTypeValue;
           element.bloodTypeValue = this.getTypesHeCanTake(
             element.bloodTypeValue.trim()
           );
+          itemDoc.set(element);
+
           console.log(element);
           itemDoc = this.afs.doc<any>('donation_notifications/' + element.id);
           element.by = 'USER';

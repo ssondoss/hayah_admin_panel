@@ -149,9 +149,10 @@ export class BloodBankComponent implements OnInit {
       ],
     });
     Swal.fire({
-      position: 'top-end',
+      position: 'top',
       icon: 'success',
-      title: 'Added ',
+      title: 'تمت الإضافة بنجاح ',
+
       showConfirmButton: false,
       timer: 1500,
     });

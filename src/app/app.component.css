@@ -104,3 +104,6 @@ label {
     font-size: 17px !important;
   }
 }
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif !important;
+}

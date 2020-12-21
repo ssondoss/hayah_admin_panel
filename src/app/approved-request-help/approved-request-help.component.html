@@ -12,8 +12,9 @@
         <th>تاريخ الميلاد</th>
         <th>الرقم الوطني</th>
         <th>المستشفى التي يتعالج بها المريض</th>
-        <th>زمر(ة) الدم التي يحتاجها المريض</th>
-        <th>عدد وحدات الدم التي يحتاجها المريض</th>
+        <th>زمرة دم المريض</th>
+        <th>زمر(ة) الدم المطلوبة</th>
+        <th>عدد وحدات الدم المطلوبة</th>
         <th>التفاصيل</th>
       </thead>
       <tbody class="text-center">
@@ -22,7 +23,8 @@
           <td>{{ request.dateValue }}</td>
           <td>{{ request.nationalIdValue }}</td>
           <td>{{ request.hospitalValue }}</td>
-          <td>{{ request.bloodTypeValue }}</td>
+          <td dir="ltr">{{ request.patientBloodType }}</td>
+          <td dir="ltr">{{ request.bloodTypeValue }}</td>
           <td>{{ request.unitsValue }}</td>
           <td>
             <a

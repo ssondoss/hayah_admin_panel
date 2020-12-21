@@ -10,7 +10,7 @@
         <th>تاريخ الميلاد</th>
         <th>الرقم الوطني</th>
         <th>المستشفى التي يتعالج بها</th>
-        <th>زمر(ة) الدم المطلوبة</th>
+        <th>زمرة دم المريض</th>
         <th>عدد وحدات الدم المطلوبة</th>
         <th>التفاصيل</th>
       </thead>
@@ -20,7 +20,7 @@
           <td>{{ request.dateValue * 1000 | date: "dd/MM/yyyy" }}</td>
           <td>{{ request.nationalIdValue }}</td>
           <td>{{ request.hospitalValue }}</td>
-          <td>{{ request.bloodTypeValue }}</td>
+          <td dir="ltr">{{ request.bloodTypeValue }}</td>
           <td>{{ request.unitsValue }}</td>
           <td>
             <a
